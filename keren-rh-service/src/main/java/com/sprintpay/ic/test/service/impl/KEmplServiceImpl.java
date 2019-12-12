@@ -22,13 +22,7 @@ import com.sprintpay.ic.test.service.KEmplService;
 @Transactional
 public class KEmplServiceImpl implements KEmplService {
 	
-	
 	private KEmplRepository kemplRepository;
-	
-	public KEmplServiceImpl(KEmplRepository kemplRepository) {
-        this.kemplRepository = kemplRepository;
-    }
-
 
 	@Override
 	public KEmpl getEmployeeByName(String name) {
@@ -37,6 +31,7 @@ public class KEmplServiceImpl implements KEmplService {
 
 	@Override
 	public List<KEmpl> getAllEmployes() {
+		
 		return kemplRepository.findAll();
 	}
 

@@ -3,8 +3,11 @@
  */
 package com.sprintpay.ic.test.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.sprintpay.ic.test.service.impl.KEmplServiceImpl;
+
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -15,8 +18,15 @@ import cucumber.api.java.en.When;
  */
 public class StepsDefinitions {
 
+	
+	@Autowired(required=true)
+	private KEmplService employeeService;
+	
+	
 	@Given("^Nous avons  N Employees$")
 	public void nous_avons_N_Employees() throws Throwable {
+		//employeeService = new KEmplServiceImpl();
+	//	Long countEmploye = (long) employeeService.getAllEmployes().size();
 		System.out.println("************** j'ai 5 employées *********************");
 	}
 

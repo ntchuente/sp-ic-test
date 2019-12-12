@@ -6,15 +6,16 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -27,7 +28,7 @@ import com.sprintpay.ic.test.service.KEmplService;
  */
 
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping("/api/ic")
 public class KEmplController {
 
 	// @Autowired
@@ -40,31 +41,39 @@ public class KEmplController {
 	}
 
 	// Get All employees
-	@GetMapping("/employees/all")
+	@GetMapping("/hello")
+	public String hello() {
+		return "hello.....";
+	}
+
+	// Get All employees
+	@RequestMapping(value = "/employees/all", method = RequestMethod.GET)
+	@ResponseBody
 	public List<KEmpl> getAllEmployes() {
 		return employeeService.getAllEmployes();
 	}
 
 	// Create a new employes
-	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity createEmployes(@Valid @RequestBody KEmpl employe, UriComponentsBuilder uriComponentsBuilder) {
 
 		KEmpl entity = employeeService.create(employe);
-
-		final URI uri = uriComponentsBuilder.path("/api/employees/{id}").build(entity.getId());
-
+		final URI uri = uriComponentsBuilder.path("/api/employee/{id}").build(entity.getId());
 		return ResponseEntity.created(uri).build();
 	}
 
 	// get employee by id
-	@GetMapping(path = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
+	@ResponseBody
 	public ResponseEntity<KEmpl> getById(@PathVariable("id") Long id) {
 		KEmpl employee = employeeService.findById(id);
 
 		return ResponseEntity.ok(employee);
 	}
 
-	@PutMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity update(@RequestBody KEmpl employee) {
 		employeeService.update(employee);
 

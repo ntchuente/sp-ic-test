@@ -29,13 +29,13 @@ import com.sprintpay.ic.test.service.impl.KEmplServiceImpl;
 public class KEmplServiceTest {
 	public static  KEmplRepository kemplRepository;
 //	@TestConfiguration
-	static class EmployeeServiceImplTestContextConfiguration {
-
-		@Bean
-		public KEmplService employeeService() {
-			return new KEmplServiceImpl(kemplRepository);
-		}
-	}
+//	static class EmployeeServiceImplTestContextConfiguration {
+//
+//		@Bean
+//		public KEmplService employeeService() {
+//			return new KEmplServiceImpl(kemplRepository);
+//		}
+//	}
 
 	//@Autowired
 	private KEmplService employeeService;
