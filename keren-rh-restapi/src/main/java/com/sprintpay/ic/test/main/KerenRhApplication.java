@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.sprintpay.ic.test.rh.KEmpl;
 import com.sprintpay.ic.test.service.KEmplService;
@@ -18,7 +19,7 @@ import com.sprintpay.ic.test.service.KEmplService;
  * @author SPRINT-PAY-NTW
  *
  */
-//@SpringBootApplication
+@SpringBootApplication
 //@EnableJpaRepositories("com.sprintpay.ic.test.service")
 //@EntityScan("com.sprintpay.ic.test.rh")
 public class KerenRhApplication implements CommandLineRunner {

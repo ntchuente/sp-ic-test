@@ -3,31 +3,29 @@ Feature: Gestion des Employes
   Scenario: Création
     Given Nous avons  N Employees
     When Je crée une nouveau emplye
-    Then J'obtiens l'ID de l'emplyé créée et la BD contient plus de N employes
+    Then J'obtiens N+1 employes
 
   Scenario: Suppression
-    Given La BD contient la Personnes TOTO
-    When Je supprime l'employé 1
-    Then La BD contient moins de N Employé
+    Given La BD contient l'employe test2
+    When Je supprime l'employé 2
+    Then La BD contient  N-1 Employé
 
   Scenario Outline: Lecture
     Given Nous avons  N Employees
     When Je recupère l'employé <id>
-    Then J'obtiens la Personne d'identifiant <id> contenant les données <prenom>, <nom>, <email>
+    Then J'obtiens l'employe  d'identifiant <id> contenant les données <firstName>, <lastName>, <email>
 
     Examples: 
-      | id | firstName | lastName | email               |
-      | 10 | test1     | test1    | ntchhuente@yahoo.fr |
-      | 20 | test2     | test2    | ntchhuente@yahoo.fr |
-      | 30 | test3     | test3    | ntchhuente@yahoo.fr |
+      | id | firstName | lastName | email          |
+      |  1 | test1     | test1    | test1@yahoo.fr |
 
   Scenario Outline: Modification
-    Given Nous avons  les Employees suivants
-      | id | prenom | nom   | naissance           |
-      | 30 | test3  | test3 | ntchhuente@yahoo.fr |
-    When Je modifie la Personne <id> avec <nom>
-    Then J'obtiens la Personne d'identifiant <id> contenant les données <prenom>, <nom>, <email>
+    Given Nous avons l'employe suivants
+      | id | firstName | lastName | email          |
+      |  3 | test3     | test3    | test3@yahoo.fr |
+    When Je modifie l'employe  <firstName>
+    Then J'obtiens la Personne d'identifiant <id> contenant les données <firstName>, <lastName>, <email>
 
     Examples: 
-      | id | prenom | nom   | naissance           |
-      | 30 | test3  | test3 | ntchhuente@yahoo.fr |
+      | id | prenom | nom   | naissance      |
+      |  3 | test3  | test3 | test3@yahoo.fr |

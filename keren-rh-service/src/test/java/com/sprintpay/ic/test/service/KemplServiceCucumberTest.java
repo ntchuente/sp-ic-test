@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class) 
 @CucumberOptions(plugin= { "pretty",
 		"html:target/cucumber-pretty","json:target/cucumber.json" } ,
-features= {"src/test/resources"} , glue="com.sprintpay.ic.test.service.test"
+features= {"src/test/resources"} , glue="com.sprintpay.ic.test.service"
 		)
 public class KemplServiceCucumberTest {
 
